@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="unprocessable_entity_exception">An error occurred. Please try later</string>
+    <string name="no_internet_exception">There is not internet connection. Please check your settings</string>
+    <string name="file_not_found_exception">The file you\'ve selected can\'t be found</string>
+    <string name="unauthorized_exception_title">Authorization error</string>
+    <string name="unauthorized_exception_msg">An invalid authorization was detected. You\'ll be
+        redirected to login</string>
+    <string name="error_text_is_empty">Not filled</string>
+    <string name="option">Option</string>
+    <string name="save">Save</string>
+    <string name="empty_title">No items yet</string>
+    <string name="albums_empty_title">Ops!</string>
+    <string name="popular_shows">Popular shows</string>
+</resources>

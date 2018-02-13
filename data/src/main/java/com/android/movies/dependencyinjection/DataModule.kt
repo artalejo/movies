@@ -2,13 +2,20 @@ package com.android.movies.dependencyinjection
 
 
 import com.android.movies.dependencyinjection.qualifier.DefaultQueries
+import com.android.movies.dependencyinjection.qualifier.ShowsApiQueries
 import com.android.movies.network.ApiEndpoints
 import com.android.movies.network.interceptors.AuthenticationInterceptor
 import com.android.movies.repository.PreferencesRepository
+import com.android.movies.repository.ShowsRepository
+import com.android.movies.repository.albums.ShowsApiDataSource
+import com.android.movies.repository.albums.ShowsDataRepository
 import com.android.movies.repository.datasource.CacheDataSource
+import com.android.movies.repository.datasource.ReadableDataSource
+import com.android.movies.repository.entities.ShowDataEntity
 import com.android.movies.repository.preferences.PreferencesDataRepository
 import com.android.movies.repository.preferences.SharedPreferencesDataSource
 import com.android.movies.repository.query.Query
+import com.android.movies.repository.shows.query.ShowsApiQuery
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ElementsIntoSet
@@ -58,4 +65,24 @@ class DataModule {
         return preferencesDataRepository
     }
 
+    @Provides
+    @Singleton
+    fun providesApiShowsReadableDataSource(showsApiDataSource: ShowsApiDataSource):
+            ReadableDataSource<Unit, ShowDataEntity> { return showsApiDataSource }
+
+    @Provides
+    @Singleton
+    @ElementsIntoSet
+    @ShowsApiQueries
+    fun providesShowApiQuery(showsApiQuery: ShowsApiQuery): MutableSet<Query> {
+        val set = LinkedHashSet<Query>()
+        set.add(showsApiQuery)
+        return set
+    }
+
+    @Provides
+    @Singleton
+    fun providesShowsDataRepository(showsDataRepository: ShowsDataRepository): ShowsRepository {
+        return showsDataRepository
+    }
 }
