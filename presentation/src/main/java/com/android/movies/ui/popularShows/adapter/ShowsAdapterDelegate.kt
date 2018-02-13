@@ -39,7 +39,7 @@ class ShowsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
         fun bind(showInfo: ShowViewEntity) {
             with(showInfo) {
                 showInfo.let {
-                    itemView.show_image.load(posterPath)
+                    itemView.show_image.load(backdropPath)
                     itemView.show_name.text = originalName
                     itemView.show_average.text = voteAverage.toString()
                     itemView.show_date.text = firstAirDate
