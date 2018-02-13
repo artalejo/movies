@@ -1,0 +1,13 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@color/windowBackgroundColor" />
+
+    <item
+        android:width="212dp"
+        android:height="189dp"
+        android:drawable="@drawable/ic_kotlin"
+        android:gravity="center"
+        android:top="150dp" android:bottom="130dp"
+        android:right="30dp" android:left="30dp"/>
+
+</layer-list>
