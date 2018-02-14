@@ -49,4 +49,6 @@
     <dimen name="toolbar_user_icon_size">30dp</dimen>
     <dimen name="show_overview_margin">16dp</dimen>
     <dimen name="similar_job_recycler_top_bot">16dp</dimen>
+    <dimen name="show_similar_name_margin">16dp</dimen>
+    <dimen name="similar_show_name_height">34dp</dimen>
 </resources>

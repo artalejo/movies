@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar
 import com.android.movies.R
 import com.android.movies.ui.base.BaseActivity
 import com.android.movies.ui.entities.ShowViewEntity
+import com.android.movies.ui.showDetail.adapter.SimilarShowsAdapterDelegate
 import com.android.movies.ui.utils.InfiniteListener
 import com.android.movies.ui.utils.adapter.GenericAdapter
 import com.android.movies.ui.utils.adapter.ViewType
@@ -18,10 +19,11 @@ import com.evernote.android.state.State
 import kotlinx.android.synthetic.main.activity_show_detail.*
 import kotlinx.android.synthetic.main.coordinator_toolbar.*
 import kotlinx.android.synthetic.main.show_detail_header.view.*
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 
-class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView {
+class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView, SimilarShowsAdapterDelegate.SimilarShowClickListener {
     companion object Intent {
         private const val SHOW = "SHOW"
         @JvmStatic fun getIntent(context: Context, show: ShowViewEntity) =
@@ -58,7 +60,8 @@ class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView {
     }
 
     private fun setUpRecyclerView() {
-//        similarShowsAdaper.setClickListener(this)
+        similarShowsAdaper.setClickListener(this)
+        similarShowsAdaper.setInfiniteListener(this)
         similar_shows_recycler.setupWithEndless(similarShowsAdaper,
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false),
                 loadMore = loadMoreData())
@@ -80,6 +83,10 @@ class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView {
                 presenter.onLoadMoreShows(page)
             }
         }
+    }
+
+    override fun onSimilarShowClicked(showInfo: ShowViewEntity) {
+        toast(showInfo.id.toString())
     }
 
     // Infinite listener implementation
