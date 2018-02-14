@@ -22,14 +22,14 @@
         android:fontFamily="@font/gotham_bold"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textSize="@dimen/empty_view_title_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/half_horizontal"
         android:text="@string/albums_empty_title" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -37,17 +37,16 @@
         android:text="@string/empty_title"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="12sp"
+        android:textSize="@dimen/empty_view_subtitle_size"
         app:layout_constraintEnd_toEndOf="@+id/title"
         app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="84sp"
-        android:layout_height="84sp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="@dimen/empty_view_logo_size"
+        android:layout_height="@dimen/empty_view_logo_size"
+        android:layout_marginBottom="@dimen/empty_view_logo_margin_bottom"
         app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="@+id/title"
         app:layout_constraintStart_toStartOf="@+id/title"

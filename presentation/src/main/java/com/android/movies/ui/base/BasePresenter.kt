@@ -1,5 +1,6 @@
 package com.android.movies.ui.base
 
+import com.android.movies.interactor.Interactor
 import com.android.movies.interactor.preferences.PreferencesInteractor
 import com.android.movies.interactor.preferences.PreferencesInteractor.Companion
 import javax.inject.Inject
@@ -30,5 +31,11 @@ abstract class BasePresenter {
     fun loadAccountData(onLoadSuccess: ((Any) -> Unit),
                         onLoadError: ((String) -> Unit)){
 
+    }
+
+    abstract fun onResume()
+    abstract fun onPause()
+    inline fun <reified S: Any, P: Any> Interactor<S, P>.cancelExecution() {
+        this.cancel()
     }
 }

@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.item_show.view.*
 class ShowsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
 
     interface ShowClickListener: BaseListener {
-        fun onShowClicked(albumInfo: ShowViewEntity)
+        fun onShowClicked(showInfo: ShowViewEntity)
     }
 
     override fun isForViewType(items: List<ViewType>, position: Int) =
@@ -42,7 +42,7 @@ class ShowsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
                     itemView.show_image.load(backdropPath)
                     itemView.show_name.text = originalName
                     itemView.show_average.text = voteAverage.toString()
-                    itemView.show_date.text = firstAirDate
+                    itemView.show_date_label.text = firstAirDate
                 }
 
                 itemView.setOnClickListener {

@@ -15,10 +15,23 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <include
+        android:id="@+id/empty_shows_view"
+        layout="@layout/empty_view"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shows_toolbar"
+        android:visibility="gone" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/shows_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        style="@style/ScrollBarRecycler"
         app:layout_constraintTop_toBottomOf="@id/shows_toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

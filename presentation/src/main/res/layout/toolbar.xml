@@ -12,9 +12,9 @@
 
         <ImageView
             android:id="@+id/close_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="@dimen/close_button_size"
+            android:layout_height="@dimen/close_button_size"
+            android:layout_marginEnd="@dimen/close_button_margin_end"
             android:src="@drawable/ic_toolbar_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/toolbar_title"
@@ -47,10 +47,10 @@
 
         <com.android.movies.ui.utils.views.CircularImageView
             android:id="@+id/toolbar_user_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/toolbar_user_icon_size"
+            android:layout_height="@dimen/toolbar_user_icon_size"
             android:src="@drawable/ic_user_default_placeholder"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"

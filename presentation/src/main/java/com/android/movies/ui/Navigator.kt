@@ -13,7 +13,6 @@ import javax.inject.Inject
  */
 class Navigator @Inject constructor() {
 
-
     fun navigateToPopularShows(context: Context) =
             context.startActivity(PopularShowsActivity.getIntent(context))
 }

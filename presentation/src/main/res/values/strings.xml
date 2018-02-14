@@ -12,4 +12,9 @@
     <string name="empty_title">No items yet</string>
     <string name="albums_empty_title">Ops!</string>
     <string name="popular_shows">Popular shows</string>
+    <string name="show_average">Average</string>
+    <string name="similar_shows">Similar shows</string>
+    <string name="first_appearance">First appearance</string>
+    <string name="something_went_wrong">SOMETHING WENT WRONG</string>
+    <string name="error_title">Oops!</string>
 </resources>

@@ -5,4 +5,5 @@ import com.android.movies.model.ShowInfo
 
 interface ShowsRepository {
     fun getShows(params: HashMap<String, String>): Result<List<ShowInfo>, *>
+    fun getSimilarShows(params: HashMap<String, String>): Result<List<ShowInfo>, *>
 }

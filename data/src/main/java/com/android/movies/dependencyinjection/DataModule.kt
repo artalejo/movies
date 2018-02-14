@@ -16,6 +16,7 @@ import com.android.movies.repository.preferences.PreferencesDataRepository
 import com.android.movies.repository.preferences.SharedPreferencesDataSource
 import com.android.movies.repository.query.Query
 import com.android.movies.repository.shows.query.ShowsApiQuery
+import com.android.movies.repository.shows.query.SimilarShowsApiQuery
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ElementsIntoSet
@@ -74,9 +75,11 @@ class DataModule {
     @Singleton
     @ElementsIntoSet
     @ShowsApiQueries
-    fun providesShowApiQuery(showsApiQuery: ShowsApiQuery): MutableSet<Query> {
+    fun providesShowApiQuery(showsApiQuery: ShowsApiQuery,
+                             similarShowsApiQuery: SimilarShowsApiQuery): MutableSet<Query> {
         val set = LinkedHashSet<Query>()
         set.add(showsApiQuery)
+        set.add(similarShowsApiQuery)
         return set
     }
 

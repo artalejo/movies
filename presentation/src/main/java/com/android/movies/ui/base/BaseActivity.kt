@@ -35,8 +35,9 @@ abstract class BaseActivity: AppCompatActivity(), ErrorBaseView, NavigationBaseV
     @State var allItems: ArrayList<ViewType> = arrayListOf()
 
     abstract var layout: Int
+    var masterPresenter: BasePresenter? = null
+    open fun getBasePresenter(): BasePresenter? = null
     open fun populateWithCachedData(){}
-    open fun fetchApiData(){}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -44,12 +45,18 @@ abstract class BaseActivity: AppCompatActivity(), ErrorBaseView, NavigationBaseV
         setContentView(layout)
         StateSaver.restoreInstanceState(this, savedInstanceState)
         onViewLoaded()
+        masterPresenter = getBasePresenter()
     }
 
     override fun onResume() {
         super.onResume()
         if (allItems.size > 0) populateWithCachedData()
-        else fetchApiData()
+        else masterPresenter?.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        masterPresenter?.onPause()
     }
 
     abstract fun onViewLoaded()

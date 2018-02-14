@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.android.movies.ui.Navigator
 import com.android.movies.ui.utils.ExceptionUtils
+import com.android.movies.ui.utils.adapter.ViewType
+import com.evernote.android.state.State
 import com.evernote.android.state.StateSaver
 import dagger.android.support.AndroidSupportInjection
 import org.jetbrains.anko.AnkoLogger
@@ -26,15 +28,32 @@ import javax.inject.Inject
 abstract class BaseFragment : Fragment(), ErrorBaseView, LoadingBaseView, AnkoLogger, EmptyBaseView {
 
     @Inject lateinit var navigator: Navigator
+    @State var allItems: ArrayList<ViewType> = arrayListOf()
     abstract var layout: Int
+    var masterPresenter: BasePresenter? = null
+
+    open fun getBasePresenter(): BasePresenter? = null
+    open fun populateWithCachedData(){}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         StateSaver.restoreInstanceState(this, savedInstanceState)
+        masterPresenter = getBasePresenter()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(layout, null)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (allItems.size > 0) populateWithCachedData()
+        else masterPresenter?.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        masterPresenter?.onPause()
     }
 
     override fun onAttach(context: Context) {

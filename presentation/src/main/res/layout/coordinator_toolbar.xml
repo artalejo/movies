@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
@@ -9,17 +8,16 @@
 
     <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.android.movies.ui.utils.views.CustomImageViewPadding
             android:id="@+id/toolbar_back"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/back_toolbar_size"
+            android:layout_height="@dimen/back_toolbar_size"
             app:image_src="@drawable/ic_toolbar_back"
-            app:image_padding="8dp"
+            app:image_padding="@dimen/toolbar_back_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -31,26 +29,9 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             style="@style/ToolbarTitle"
-            android:layout_marginRight="32dp"
+            android:layout_marginRight="@dimen/coordinator_title_margin_right"
             app:layout_constraintStart_toEndOf="@id/toolbar_back"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-
-        <TextView
-            android:id="@+id/toolbar_option"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/option"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            android:fontFamily="@font/gotham_bold"
-            android:textAllCaps="true"
-            android:gravity="center_vertical"
-            app:layout_constraintRight_toLeftOf="@+id/toolbar_option_btn"
-            android:textColor="@color/colorAccent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
