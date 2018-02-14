@@ -13,5 +13,5 @@ interface ShowsService {
 
     @GET(ApiEndpoints.SIMILAR_SHOWS)
     fun getSimilarShows(@Path("tv_id") showID: String,
-                        params: Map<String, String>) : Call<ShowsResponse>
+                        @QueryMap params: Map<String, String>) : Call<ShowsResponse>
 }

@@ -3,6 +3,8 @@ package com.android.movies.dependencyinjection
 import com.android.movies.dependencyinjection.scope.PerActivity
 import com.android.movies.ui.popularShows.PopularShowsActivity
 import com.android.movies.ui.popularShows.PopularShowsActivityModule
+import com.android.movies.ui.showDetail.ShowDetailActivity
+import com.android.movies.ui.showDetail.ShowDetailActivityModule
 import com.android.movies.ui.similarShows.SimilarShowsActivity
 import com.android.movies.ui.similarShows.SimilarShowsActivityModule
 import com.android.movies.ui.splash.SplashActivity
@@ -23,4 +25,8 @@ abstract class ActivityInjector {
     @PerActivity
     @ContributesAndroidInjector(modules = [(SimilarShowsActivityModule::class)])
     abstract fun contributeSimilarShowsInjector(): SimilarShowsActivity
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = [(ShowDetailActivityModule::class)])
+    abstract fun contributeShowDetailInjector(): ShowDetailActivity
 }

@@ -15,7 +15,6 @@ import com.android.movies.ui.utils.extensions.setupWithEndless
 import com.evernote.android.state.State
 import kotlinx.android.synthetic.main.activity_popular_shows.*
 import kotlinx.android.synthetic.main.toolbar.view.*
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class PopularShowsActivity : BaseActivity(), PopularShowsView,
@@ -61,11 +60,10 @@ class PopularShowsActivity : BaseActivity(), PopularShowsView,
     }
 
     override fun onShowClicked(showInfo: ShowViewEntity) {
-        toast("Show clicked : " + showInfo.id)
+        navigator.navigateToShowDetail(this, showInfo)
     }
 
-    // Infinite listener implementations
-
+    // Infinite listener implementation
     override var limitPerPage = LIMIT_PER_PAGE
     override var lastItemVisiblePosition = lastShowVisiblePos
     override fun showPopularShows(shows: List<ShowViewEntity>) = showsAdapter.addNewInfiniteItems(shows)

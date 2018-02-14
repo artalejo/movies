@@ -3,6 +3,7 @@ package com.android.movies.ui.base
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.android.movies.R
 import com.android.movies.network.ApiConstants
 import com.android.movies.ui.Navigator
 import com.android.movies.ui.utils.ExceptionUtils
@@ -96,4 +97,9 @@ abstract class BaseActivity: AppCompatActivity(), ErrorBaseView, NavigationBaseV
         if (addToBackStack) transaction.addToBackStack(fragmentTag)
         transaction.commit()
     }
+
+    fun overridePendingTransitionEnter() =
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
+    fun overridePendingTransitionExit() =
+            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right)
 }

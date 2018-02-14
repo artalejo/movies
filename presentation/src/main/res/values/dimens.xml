@@ -47,4 +47,6 @@
     <dimen name="close_button_size">30dp</dimen>
     <dimen name="close_button_margin_end">16dp</dimen>
     <dimen name="toolbar_user_icon_size">30dp</dimen>
+    <dimen name="show_overview_margin">16dp</dimen>
+    <dimen name="similar_job_recycler_top_bot">16dp</dimen>
 </resources>

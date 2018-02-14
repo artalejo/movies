@@ -47,13 +47,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/show_title_height"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:ellipsize="end"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/show_title_size"
                 android:textStyle="bold"
+                android:gravity="center"
                 android:transitionName="@string/transition_title"
-                app:autoSizeMaxTextSize="@dimen/show_title_auto_max_size"
-                app:autoSizeMinTextSize="@dimen/show_title_auto_min_size"
+                app:autoSizeMaxTextSize="@dimen/show_detail_title_auto_max_size"
+                app:autoSizeMinTextSize="@dimen/show_detail_title_auto_min_size"
                 app:autoSizeStepGranularity="@dimen/show_title_granularity"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintLeft_toLeftOf="@+id/left_guide"
@@ -69,6 +69,19 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 app:layout_constraintTop_toBottomOf="@id/show_title" />
 
+            <TextView
+                android:id="@+id/show_overview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/show_overview_margin"
+                android:layout_marginStart="@dimen/show_overview_margin"
+                android:layout_marginTop="@dimen/show_overview_margin"
+                android:textColor="@color/colorPrimaryDark"
+                tools:text="@string/overview_sample"
+                app:layout_constraintEnd_toEndOf="@+id/title_divider"
+                app:layout_constraintStart_toStartOf="@+id/title_divider"
+                app:layout_constraintTop_toBottomOf="@+id/title_divider" />
+
             <com.android.movies.ui.utils.views.CustomImageViewPadding
                 android:id="@+id/show_date_icon"
                 android:layout_width="wrap_content"
@@ -82,13 +95,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/show_detail_margin_start"
+                android:layout_marginTop="8dp"
                 android:text="@string/first_appearance"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/show_detail_label_size"
                 app:layout_constraintBottom_toBottomOf="@id/show_date_icon"
                 app:layout_constraintRight_toRightOf="@+id/right_guide"
                 app:layout_constraintStart_toEndOf="@+id/show_date_icon"
-                app:layout_constraintTop_toBottomOf="@+id/title_divider" />
+                app:layout_constraintTop_toBottomOf="@+id/show_overview" />
 
             <TextView
                 android:id="@+id/show_date"
@@ -145,24 +159,27 @@
                 android:id="@+id/similar_shows_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/show_detail_margin_start"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:text="@string/similar_shows"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/show_detail_header_size"
                 android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/info_divider"
                 app:layout_constraintTop_toBottomOf="@+id/info_divider" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/similar_shows_recycler"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/similar_job_recycler_top_bot"
+                android:layout_marginBottom="@dimen/similar_job_recycler_top_bot"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/similar_shows_title" />
 
             <ProgressBar
-                android:id="@+id/show_detail_progress_bar"
+                android:id="@+id/similar_shows_progress_bar"
                 style="?android:progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
