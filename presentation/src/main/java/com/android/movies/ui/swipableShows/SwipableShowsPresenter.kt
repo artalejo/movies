@@ -1,4 +1,4 @@
-package com.android.movies.ui.showDetail
+package com.android.movies.ui.swipableShows
 
 import com.android.movies.interactor.SimilarShowsInteractor
 import com.android.movies.network.ApiConstants.Companion.PAGE
@@ -8,14 +8,13 @@ import com.android.movies.ui.entities.mappers.toShowViewEntity
 import javax.inject.Inject
 
 
-class ShowDetailPresenter @Inject constructor(val view: ShowDetailView,
-                                              private val similarShowsInteractor: SimilarShowsInteractor) : BasePresenter() {
-    override fun onResume() {
-        getSimilarShows()
-    }
-    fun onLoadMoreShows(page: Int) = getSimilarShows(page = page)
+class SwipableShowsPresenter @Inject constructor(val view: SwipableShowsView,
+                                                 private val similarShowsInteractor: SimilarShowsInteractor)
+    : BasePresenter() {
+    override fun onResume() {}
+    override fun onPause() = similarShowsInteractor.cancelExecution()
 
-    private fun getSimilarShows(page: Int = -1) {
+    fun loadMoreSimilarShows(page: Int = -1) {
         var apiParams = hashMapOf<String, String>()
         apiParams[SHOW_ID] = view.getShowId().toString()
         if (page > 0) apiParams[PAGE]= page.toString()
@@ -25,6 +24,4 @@ class ShowDetailPresenter @Inject constructor(val view: ShowDetailView,
             result.failure { exception -> exceptionHandler.notifyException(view, exception) }
         }
     }
-    override fun onPause() = similarShowsInteractor.cancelExecution()
-    fun onBackBtnPressed() =  view.onBackPressed()
 }

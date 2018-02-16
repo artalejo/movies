@@ -1,11 +1,9 @@
-package com.android.movies.ui.showDetail;
+package com.android.movies.ui.swipableShows
 
 import com.android.movies.ui.base.ErrorBaseView
-import com.android.movies.ui.base.NavigationBaseView
 import com.android.movies.ui.entities.ShowViewEntity
 
-
-interface ShowDetailView : ErrorBaseView, NavigationBaseView {
+interface SwipableShowsView : ErrorBaseView {
     fun showSimilarShows(shows: List<ShowViewEntity>)
     fun getShowId(): Long
 }

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/show_detail_header"
+        layout="@layout/show_detail_header"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="false"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraint_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:descendantFocusability="blocksDescendants">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/left_guide"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/right_guide"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/show_title"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/show_title_height"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/show_title_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:transitionName="@string/transition_title"
+                app:autoSizeMaxTextSize="@dimen/show_detail_title_auto_max_size"
+                app:autoSizeMinTextSize="@dimen/show_detail_title_auto_min_size"
+                app:autoSizeStepGranularity="@dimen/show_title_granularity"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintLeft_toLeftOf="@+id/left_guide"
+                app:layout_constraintRight_toRightOf="@+id/right_guide"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Gladiator" />
+
+            <include
+                android:id="@+id/title_divider"
+                layout="@layout/divider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                app:layout_constraintTop_toBottomOf="@id/show_title" />
+
+            <TextView
+                android:id="@+id/show_overview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/show_overview_margin"
+                android:layout_marginStart="@dimen/show_overview_margin"
+                android:layout_marginTop="@dimen/show_overview_margin"
+                android:textColor="@color/colorPrimaryDark"
+                tools:text="@string/overview_sample"
+                app:layout_constraintEnd_toEndOf="@+id/title_divider"
+                app:layout_constraintStart_toStartOf="@+id/title_divider"
+                app:layout_constraintTop_toBottomOf="@+id/title_divider" />
+
+            <com.android.movies.ui.utils.views.CustomImageViewPadding
+                android:id="@+id/show_date_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/show_date"
+                app:layout_constraintLeft_toLeftOf="@+id/left_guide"
+                app:layout_constraintTop_toTopOf="@id/show_date_label" />
+
+            <TextView
+                android:id="@+id/show_date_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/show_detail_margin_start"
+                android:layout_marginTop="8dp"
+                android:text="@string/first_appearance"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/show_detail_label_size"
+                app:layout_constraintBottom_toBottomOf="@id/show_date_icon"
+                app:layout_constraintRight_toRightOf="@+id/right_guide"
+                app:layout_constraintStart_toEndOf="@+id/show_date_icon"
+                app:layout_constraintTop_toBottomOf="@+id/show_overview" />
+
+            <TextView
+                android:id="@+id/show_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/show_detail_margin_start"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintRight_toRightOf="@+id/right_guide"
+                app:layout_constraintStart_toEndOf="@+id/show_average_icon"
+                app:layout_constraintTop_toBottomOf="@+id/show_date_label"
+                tools:text="02/05/1989" />
+
+            <com.android.movies.ui.utils.views.CustomImageViewPadding
+                android:id="@+id/show_average_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/show_average"
+                app:layout_constraintLeft_toLeftOf="@+id/left_guide"
+                app:layout_constraintTop_toTopOf="@id/show_average_label" />
+
+            <TextView
+                android:id="@+id/show_average_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/show_detail_margin_start"
+                android:text="@string/show_average"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/show_detail_label_size"
+                app:layout_constraintBottom_toBottomOf="@id/show_average_icon"
+                app:layout_constraintRight_toRightOf="@+id/right_guide"
+                app:layout_constraintStart_toEndOf="@+id/show_average_icon"
+                app:layout_constraintTop_toBottomOf="@+id/show_date" />
+
+            <TextView
+                android:id="@+id/show_average"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/show_detail_margin_start"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintRight_toRightOf="@+id/right_guide"
+                app:layout_constraintStart_toEndOf="@+id/show_average_icon"
+                app:layout_constraintTop_toBottomOf="@+id/show_average_label"
+                tools:text="9.9" />
+
+            <include
+                android:id="@+id/info_divider"
+                layout="@layout/divider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                app:layout_constraintTop_toBottomOf="@id/show_average" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
+
+

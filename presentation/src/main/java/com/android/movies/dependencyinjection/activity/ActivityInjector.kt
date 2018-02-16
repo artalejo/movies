@@ -8,6 +8,8 @@ import com.android.movies.ui.showDetail.ShowDetailActivityModule
 import com.android.movies.ui.similarShows.SimilarShowsActivity
 import com.android.movies.ui.similarShows.SimilarShowsActivityModule
 import com.android.movies.ui.splash.SplashActivity
+import com.android.movies.ui.swipableShows.SwipableShowsActivity
+import com.android.movies.ui.swipableShows.SwipableShowsActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -29,4 +31,8 @@ abstract class ActivityInjector {
     @PerActivity
     @ContributesAndroidInjector(modules = [(ShowDetailActivityModule::class)])
     abstract fun contributeShowDetailInjector(): ShowDetailActivity
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = [(SwipableShowsActivityModule::class)])
+    abstract fun contributeSwipableShowsInjector(): SwipableShowsActivity
 }

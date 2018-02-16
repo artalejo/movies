@@ -15,6 +15,7 @@ abstract class EndlessRecyclerOnScrollListener : RecyclerView.OnScrollListener {
     private var previousTotalItemCount = 0
     private var loading = true
     private val startingPageIndex = 1
+    private var isHorizontalEndless = false
 
     internal var layoutManager: RecyclerView.LayoutManager
 
@@ -23,6 +24,7 @@ abstract class EndlessRecyclerOnScrollListener : RecyclerView.OnScrollListener {
         when(layoutManager) {
             is LinearLayoutManager -> {
                 this.layoutManager = layoutManager
+                isHorizontalEndless = (layoutManager.orientation == LinearLayoutManager.HORIZONTAL)
             }
             is GridLayoutManager -> {
                 this.layoutManager = layoutManager
@@ -38,6 +40,7 @@ abstract class EndlessRecyclerOnScrollListener : RecyclerView.OnScrollListener {
 
     constructor(layoutManager: LinearLayoutManager) {
         this.layoutManager = layoutManager
+        isHorizontalEndless = (layoutManager.orientation == LinearLayoutManager.HORIZONTAL)
     }
 
     constructor(layoutManager: GridLayoutManager) {
@@ -63,7 +66,8 @@ abstract class EndlessRecyclerOnScrollListener : RecyclerView.OnScrollListener {
     }
 
     override fun onScrolled(view: RecyclerView?, dx: Int, dy: Int) {
-        if (dy > 0) {
+        val dimenToCheck = if (isHorizontalEndless) dx else dy
+        if (dimenToCheck > 0) {
             var lastVisibleItemPosition = 0
             var totalItemCount = layoutManager.itemCount
 

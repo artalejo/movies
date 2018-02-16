@@ -1,4 +1,4 @@
-package com.android.movies.ui.showDetail;
+package com.android.movies.ui.showDetail
 
 import android.content.Context
 import android.content.Intent
@@ -19,7 +19,6 @@ import com.evernote.android.state.State
 import kotlinx.android.synthetic.main.activity_show_detail.*
 import kotlinx.android.synthetic.main.coordinator_toolbar.*
 import kotlinx.android.synthetic.main.show_detail_header.view.*
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 
@@ -80,13 +79,14 @@ class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView, Sim
     private fun loadMoreData(): (Int, Int) -> Unit {
         return { page, totalItemsCount ->
             if (totalItemsCount.rem(LIMIT_PER_PAGE) == 0) {
+                similarShowsAdaper.addLoadingView()
                 presenter.onLoadMoreShows(page)
             }
         }
     }
 
-    override fun onSimilarShowClicked(showInfo: ShowViewEntity) {
-        toast(showInfo.id.toString())
+    override fun onSimilarShowClicked(showId: Long, position: Int) {
+        navigator.navigateToSwipableShows(this, allItems, position, showId)
     }
 
     // Infinite listener implementation

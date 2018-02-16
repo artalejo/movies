@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.item_show.view.*
 class SimilarShowsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
 
     interface SimilarShowClickListener: BaseListener {
-        fun onSimilarShowClicked(showInfo: ShowViewEntity)
+        fun onSimilarShowClicked(showId: Long, position: Int)
     }
 
     override fun isForViewType(items: List<ViewType>, position: Int) =
@@ -30,13 +30,13 @@ class SimilarShowsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
     }
 
     override fun onBindViewHolder(items: List<ViewType>, position: Int, holder: RecyclerView.ViewHolder, payloads: List<Any>) {
-        (holder as? ShowViewHolder)?.bind(items[position] as ShowViewEntity)
+        (holder as? ShowViewHolder)?.bind(items[position] as ShowViewEntity, position)
     }
 
     class ShowViewHolder(view: View, val listener: BaseListener?,
                          val context: Context) : ItemViewHolder(view) {
 
-        fun bind(showInfo: ShowViewEntity) {
+        fun bind(showInfo: ShowViewEntity, position: Int) {
             with(showInfo) {
                 showInfo.let {
                     itemView.show_image.load(backdropPath)
@@ -44,7 +44,7 @@ class SimilarShowsAdapterDelegate : AdapterDelegate<List<ViewType>>() {
                 }
 
                 itemView.setOnClickListener {
-                    listener?.let { (it as SimilarShowClickListener).onSimilarShowClicked(showInfo) }
+                    listener?.let { (it as SimilarShowClickListener).onSimilarShowClicked(showInfo.id, position) }
                 }
             }
         }

@@ -20,7 +20,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("atabix.com.domain.test", appContext.getPackageName());
+        assertEquals("com.android.movies.test", appContext.getPackageName());
     }
 }
