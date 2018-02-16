@@ -55,4 +55,5 @@
     <dimen name="show_detail_scrim_visible_height">58dp</dimen>
     <dimen name="toolbar_title_lateral_margin">16dp</dimen>
     <dimen name="toolbar_circular_icon_bkg">36dp</dimen>
+    <dimen name="similar_show_item_width">180dp</dimen>
 </resources>
