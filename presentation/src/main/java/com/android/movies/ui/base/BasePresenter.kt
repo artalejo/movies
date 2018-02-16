@@ -19,7 +19,7 @@ import javax.inject.Inject
  */
 abstract class BasePresenter {
     @Inject protected lateinit var preferencesInteractor: PreferencesInteractor
-    @Inject protected lateinit var exceptionHandler: AndroidExceptionHandler
+    @Inject lateinit var exceptionHandler: AndroidExceptionHandler
 
     fun clearUserLocalData(onClearSuccess: (() -> Unit),
                            onClearError: ((String) -> Unit)) {
