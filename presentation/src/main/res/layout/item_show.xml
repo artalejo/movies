@@ -39,7 +39,7 @@
             android:layout_marginTop="@dimen/show_name_margin"
             android:ellipsize="end"
             android:fontFamily="@font/gotham_book"
-            android:gravity="center_vertical|left"
+            android:gravity="center"
             android:lineSpacingExtra="@dimen/show_title_space_extra"
             android:maxLines="3"
             android:textColor="@color/white"
@@ -93,6 +93,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.7" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="16dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/show_average"
+            app:layout_constraintStart_toEndOf="@+id/show_average"
+            app:layout_constraintTop_toTopOf="@+id/show_average"
+            app:srcCompat="@drawable/ic_average" />
 
     </android.support.constraint.ConstraintLayout>
 

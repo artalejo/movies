@@ -27,7 +27,7 @@
     <dimen name="show_name_margin">8dp</dimen>
     <dimen name="show_title_space_extra">4sp</dimen>
     <dimen name="show_title_text_size">16sp</dimen>
-    <dimen name="show_average_text_size">16sp</dimen>
+    <dimen name="show_average_text_size">20sp</dimen>
     <dimen name="show_item_right_margin">16dp</dimen>
     <dimen name="show_date_size">14sp</dimen>
     <dimen name="collapsing_margin_end">64dp</dimen>

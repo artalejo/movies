@@ -1,18 +1,12 @@
 package com.android.movies.ui.swipableShows.showDetail
 
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.v7.widget.Toolbar
 import android.view.View
 import com.android.movies.R
 import com.android.movies.ui.base.BaseFragment
 import com.android.movies.ui.entities.ShowViewEntity
 import com.android.movies.ui.utils.extensions.load
-import com.android.movies.ui.utils.extensions.setParallaxBehaviour
-import kotlinx.android.synthetic.main.activity_show_detail.*
-import kotlinx.android.synthetic.main.coordinator_toolbar.*
-import kotlinx.android.synthetic.main.custom_imageview_padding.view.*
-import kotlinx.android.synthetic.main.show_detail_header.view.*
+import kotlinx.android.synthetic.main.fragment_show_detail.*
 import javax.inject.Inject
 
 class ShowDetailFragment : BaseFragment(), ShowDetailFragView {
@@ -24,7 +18,6 @@ class ShowDetailFragment : BaseFragment(), ShowDetailFragView {
 
     companion object Fragment {
         private const val SHOW = "SHOW"
-        private const val CLOSE_TOOLBAR_PADDING = 4
 
         @JvmStatic fun newInstance(album: ShowViewEntity): ShowDetailFragment {
             val fragment = ShowDetailFragment()
@@ -38,23 +31,13 @@ class ShowDetailFragment : BaseFragment(), ShowDetailFragView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showInfo = arguments?.getParcelable(SHOW) as ShowViewEntity
-        onLoading(similar_shows_recycler, similar_shows_progress_bar)
-        setUpToolbar()
+        close.setOnClickListener{ presenter.onBackBtnPressed() }
         setUpShowInfo()
-    }
-
-    private fun setUpToolbar() {
-        val toolbar = show_detail_header.show_detail_toolbar as Toolbar
-        toolbar_back.icon.setImageResource(R.drawable.ic_close)
-        toolbar_back.imagePadding = CLOSE_TOOLBAR_PADDING
-        toolbar.setOnClickListener{ presenter.onBackBtnPressed() }
-        (show_detail_header as AppBarLayout).setParallaxBehaviour(coordinator_toolbar_title,
-                                                                  showInfo.originalName)
     }
 
     private fun setUpShowInfo(){
         with (showInfo) {
-            show_detail_header.show_image.load(backdropPath)
+            show_image.load(backdropPath)
             show_title.text = originalName
             show_date.text = firstAirDate
             show_overview.text = overview
