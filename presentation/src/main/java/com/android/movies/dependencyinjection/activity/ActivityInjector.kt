@@ -5,8 +5,6 @@ import com.android.movies.ui.popularShows.PopularShowsActivity
 import com.android.movies.ui.popularShows.PopularShowsActivityModule
 import com.android.movies.ui.showDetail.ShowDetailActivity
 import com.android.movies.ui.showDetail.ShowDetailActivityModule
-import com.android.movies.ui.similarShows.SimilarShowsActivity
-import com.android.movies.ui.similarShows.SimilarShowsActivityModule
 import com.android.movies.ui.splash.SplashActivity
 import com.android.movies.ui.swipableShows.SwipableShowsActivity
 import com.android.movies.ui.swipableShows.SwipableShowsActivityModule
@@ -23,10 +21,6 @@ abstract class ActivityInjector {
     @PerActivity
     @ContributesAndroidInjector(modules = [(PopularShowsActivityModule::class)])
     abstract fun contributePopularShowsInjector(): PopularShowsActivity
-
-    @PerActivity
-    @ContributesAndroidInjector(modules = [(SimilarShowsActivityModule::class)])
-    abstract fun contributeSimilarShowsInjector(): SimilarShowsActivity
 
     @PerActivity
     @ContributesAndroidInjector(modules = [(ShowDetailActivityModule::class)])

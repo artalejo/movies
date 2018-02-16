@@ -29,9 +29,6 @@
         <activity android:name=".ui.popularShows.PopularShowsActivity"
                   android:theme="@style/ActivityTheme"/>
 
-        <activity android:name=".ui.similarShows.SimilarShowsActivity"
-                  android:theme="@style/ActivityTheme"/>
-
         <activity android:name=".ui.showDetail.ShowDetailActivity"
                   android:theme="@style/ActivityTheme"/>
 
