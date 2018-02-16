@@ -80,7 +80,7 @@ fun ImageView.load(url: String, width: Int = 300, height: Int = 300,
             .load(url)
             .override(width, height)
             .dontTransform()
-            .error(R.color.colorAccent)
+            .error(R.drawable.ic_not_found)
             .placeholder(placeHolderResourceId)
             .into(this)
 }

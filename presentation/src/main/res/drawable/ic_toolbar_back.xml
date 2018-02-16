@@ -2,9 +2,9 @@
     android:viewportWidth="15.0" android:width="16dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#00000000" android:fillType="evenOdd"
         android:pathData="M7.799,13.237L1.5,7.37 7.799,1.5"
-        android:strokeColor="#E88E3D" android:strokeLineCap="round"
+        android:strokeColor="@color/colorSecondaryAccent" android:strokeLineCap="round"
         android:strokeLineJoin="round" android:strokeWidth="2"/>
     <path android:fillColor="#00000000" android:fillType="evenOdd"
-        android:pathData="M1.5,7.329h12" android:strokeColor="#E88E3D"
+        android:pathData="M1.5,7.329h12" android:strokeColor="@color/colorSecondaryAccent"
         android:strokeLineCap="round" android:strokeWidth="2"/>
 </vector>

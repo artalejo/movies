@@ -3,6 +3,7 @@
     <color name="colorPrimary">#07575b</color>
     <color name="colorPrimaryDark">#003b46</color>
     <color name="colorAccent">#66A5ad</color>
+    <color name="colorSecondaryAccent">#E88E3D</color>
     <color name="windowBackgroundColor">#c4dfe6</color>
     <color name="hint_text">#898a97</color>
     <color name="white">@android:color/white</color>
