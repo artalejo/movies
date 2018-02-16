@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,18 +14,19 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
         android:fillViewport="false"
         android:fitsSystemWindows="true"
+        android:clipToPadding="false"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraint_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:descendantFocusability="blocksDescendants">
+            android:layout_marginRight="@dimen/activity_horizontal_margin">
 
             <android.support.constraint.Guideline
                 android:id="@+id/left_guide"
@@ -172,13 +172,13 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/similar_shows_recycler"
+                android:orientation="horizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/similar_job_recycler_top_bot"
-                android:layout_marginBottom="@dimen/similar_job_recycler_top_bot"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/similar_shows_title" />
+                app:layout_constraintTop_toBottomOf="@+id/similar_shows_title"/>
 
             <ProgressBar
                 android:id="@+id/similar_shows_progress_bar"

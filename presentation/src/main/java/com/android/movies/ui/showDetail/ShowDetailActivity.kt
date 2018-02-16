@@ -5,6 +5,8 @@ import android.content.Intent
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
+import android.view.MotionEvent
+import android.view.View
 import com.android.movies.R
 import com.android.movies.ui.base.BaseActivity
 import com.android.movies.ui.entities.ShowViewEntity
@@ -64,6 +66,23 @@ class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView, Sim
         similar_shows_recycler.setupWithEndless(similarShowsAdaper,
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false),
                 loadMore = loadMoreData())
+        similar_shows_recycler.isNestedScrollingEnabled = false
+        invalidateParentScrollWhenRecyclerTouch()
+    }
+
+    private fun invalidateParentScrollWhenRecyclerTouch() {
+        similar_shows_recycler.setOnTouchListener(View.OnTouchListener { v, event ->
+            if (v != null && event != null) {
+                val action = event.action
+                when (action) {
+                    MotionEvent.ACTION_DOWN, MotionEvent.ACTION_UP ->
+                        v.parent.requestDisallowInterceptTouchEvent(true)
+                }
+                v.onTouchEvent(event)
+                return@OnTouchListener true
+            }
+            false
+        })
     }
 
     private fun setUpShowInfo(){
