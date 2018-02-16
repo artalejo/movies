@@ -2,6 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="show_detail_header_anim_duration">300</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="divider_height">1dp</dimen>
     <dimen name="divider_margin">24dp</dimen>
@@ -51,4 +52,5 @@
     <dimen name="similar_job_recycler_top_bot">16dp</dimen>
     <dimen name="show_similar_name_margin">16dp</dimen>
     <dimen name="similar_show_name_height">34dp</dimen>
+    <dimen name="show_detail_scrim_visible_height">58dp</dimen>
 </resources>

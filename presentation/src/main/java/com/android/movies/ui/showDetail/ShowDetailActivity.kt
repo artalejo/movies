@@ -54,8 +54,8 @@ class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView, Sim
     private fun setUpToolbar() {
         val toolbar = show_detail_header.show_detail_toolbar as Toolbar
         toolbar.setOnClickListener{ presenter.onBackBtnPressed() }
-        (show_detail_header as AppBarLayout).setParallaxBehaviour(toolbar,
-                coordinator_toolbar_title, showInfo.originalName)
+        (show_detail_header as AppBarLayout).setParallaxBehaviour(coordinator_toolbar_title,
+                                                                  showInfo.originalName)
     }
 
     private fun setUpRecyclerView() {

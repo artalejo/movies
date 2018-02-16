@@ -9,7 +9,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
-import android.support.v7.widget.Toolbar
 import android.text.TextPaint
 import android.text.style.URLSpan
 import android.view.View
@@ -27,6 +26,8 @@ import java.io.File
 import java.io.FileOutputStream
 
 private val NOT_FILLED = "Not filled"
+private val TITLE_ANIM_DURATION : Long = 300
+private val TITLE_ANIM_ALPHA  = 1f
 
 /**
  * Loads an image from a specified url and adds a placeholder
@@ -337,17 +338,15 @@ fun RecyclerView.refreshScrollListener(layoutManager: RecyclerView.LayoutManager
 }
 
 
-fun AppBarLayout.setParallaxBehaviour(toolbar: Toolbar, toolbarTitle: TextView,
-                                      actualTitle: String, pinColor: Int = R.color.colorAccent) {
+fun AppBarLayout.setParallaxBehaviour(toolbarTitle: TextView, actualTitle: String) {
     this.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
         if (verticalOffset <= -appBarLayout.totalScrollRange) {
             //Toolbar Collapsed
             toolbarTitle.text = actualTitle
-            toolbar.setBackgroundColor(ContextCompat.getColor(context, pinColor))
+            toolbarTitle.animate().alpha(TITLE_ANIM_ALPHA).duration = TITLE_ANIM_DURATION
         } else {
             //Toolbar Expanded
             toolbarTitle.text = " "
-            toolbar.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
         }
     }
 }
