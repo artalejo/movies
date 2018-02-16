@@ -44,17 +44,17 @@ class CustomImageViewPadding @JvmOverloads constructor(
             imageSrc = typedArray.getResourceId(
                     R.styleable.CustomImageViewPadding_image_src,
                     R.drawable.ic_menu_share)
-            edit.setImageResource(imageSrc)
+            icon.setImageResource(imageSrc)
         }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val imageLayoutParams = edit.layoutParams.apply {
+        val imageLayoutParams = icon.layoutParams.apply {
             height = heightMeasureSpec - imagePadding
             width = widthMeasureSpec - imagePadding
         }
 
-        with(edit) {
+        with(icon) {
             layoutParams = imageLayoutParams
             scaleType = ImageView.ScaleType.FIT_CENTER
             adjustViewBounds = true

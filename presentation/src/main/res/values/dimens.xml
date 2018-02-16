@@ -38,7 +38,7 @@
     <dimen name="error_text_size">34sp</dimen>
     <dimen name="error_title_margin">8dp</dimen>
     <dimen name="back_toolbar_size">32dp</dimen>
-    <dimen name="toolbar_back_padding">8dp</dimen>
+    <dimen name="toolbar_back_padding">12dp</dimen>
     <dimen name="coordinator_title_margin_right">8dp</dimen>
     <dimen name="custom_image_padding_size">18dp</dimen>
     <dimen name="empty_view_title_size">34sp</dimen>
@@ -53,4 +53,6 @@
     <dimen name="show_similar_name_margin">16dp</dimen>
     <dimen name="similar_show_name_height">34dp</dimen>
     <dimen name="show_detail_scrim_visible_height">58dp</dimen>
+    <dimen name="toolbar_title_lateral_margin">16dp</dimen>
+    <dimen name="toolbar_circular_icon_bkg">36dp</dimen>
 </resources>

@@ -9,7 +9,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/edit"
+            android:id="@+id/icon"
             android:layout_height="@dimen/custom_image_padding_size"
             android:layout_width="@dimen/custom_image_padding_size"
             app:layout_constraintBottom_toBottomOf="@+id/container"

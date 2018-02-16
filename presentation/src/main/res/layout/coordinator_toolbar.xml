@@ -18,6 +18,7 @@
             android:layout_height="@dimen/back_toolbar_size"
             app:image_src="@drawable/ic_toolbar_back"
             app:image_padding="@dimen/toolbar_back_padding"
+            android:background="@drawable/ic_toolbar_circular_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -25,15 +26,16 @@
 
         <TextView
             android:id="@+id/coordinator_toolbar_title"
+            style="@style/ToolbarTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/toolbar_title_lateral_margin"
+            android:layout_marginEnd="@dimen/toolbar_title_lateral_margin"
             android:gravity="left"
-            style="@style/ToolbarTitle"
-            android:layout_marginRight="@dimen/coordinator_title_margin_right"
-            app:layout_constraintStart_toEndOf="@id/toolbar_back"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toEndOf="@id/toolbar_back"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
