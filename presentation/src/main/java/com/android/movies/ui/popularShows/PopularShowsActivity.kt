@@ -57,6 +57,7 @@ class PopularShowsActivity : BaseActivity(), PopularShowsView,
 
     override fun populateWithCachedData() {
         showsAdapter.set(allItems, refresh = true)
+        showInfoRetrieved()
     }
 
     override fun onShowClicked(showInfo: ShowViewEntity) {

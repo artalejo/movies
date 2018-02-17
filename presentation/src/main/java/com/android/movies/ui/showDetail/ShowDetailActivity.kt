@@ -61,6 +61,11 @@ class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView, Sim
                                                                   showInfo.originalName)
     }
 
+    override fun populateWithCachedData() {
+        similarShowsAdaper.set(allItems, refresh = true)
+        showInfoRetrieved()
+    }
+
     private fun setUpRecyclerView() {
         similarShowsAdaper.setClickListener(this)
         similarShowsAdaper.setInfiniteListener(this)
