@@ -20,6 +20,7 @@ import com.android.movies.ui.utils.extensions.setupWithEndless
 import com.evernote.android.state.State
 import kotlinx.android.synthetic.main.activity_show_detail.*
 import kotlinx.android.synthetic.main.coordinator_toolbar.*
+import kotlinx.android.synthetic.main.coordinator_toolbar.view.*
 import kotlinx.android.synthetic.main.show_detail_header.view.*
 import javax.inject.Inject
 
@@ -55,7 +56,7 @@ class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView, Sim
 
     private fun setUpToolbar() {
         val toolbar = show_detail_header.show_detail_toolbar as Toolbar
-        toolbar.setOnClickListener{ presenter.onBackBtnPressed() }
+        toolbar.toolbar_back.setOnClickListener{ presenter.onBackBtnPressed() }
         (show_detail_header as AppBarLayout).setParallaxBehaviour(coordinator_toolbar_title,
                                                                   showInfo.originalName)
     }
