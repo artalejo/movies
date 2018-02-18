@@ -45,5 +45,5 @@ class ShowDetailFragment : BaseFragment(), ShowDetailFragView {
         }
     }
 
-    override fun onBackPressed() { activity?.finish() }
+    override fun onBackPressed() { activity?.onBackPressed() }
 }

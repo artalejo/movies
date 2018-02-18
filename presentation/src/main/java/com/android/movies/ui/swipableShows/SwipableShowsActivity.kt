@@ -47,6 +47,11 @@ class SwipableShowsActivity : BaseActivity(), SwipableShowsView {
         setupViewPager()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransitionExit()
+    }
+
     private fun setupViewPager() {
         val shows = arrayListOf<ViewType>()
         shows.addAll(prefetchShows)

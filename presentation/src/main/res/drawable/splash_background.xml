@@ -1,10 +1,10 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/windowBackgroundColor" />
+    <item android:drawable="@color/colorPrimary" />
 
     <item
-        android:width="212dp"
-        android:height="189dp"
+        android:width="200dp"
+        android:height="180dp"
         android:drawable="@drawable/ic_movies_icon"
         android:gravity="center"
         android:top="120dp" android:bottom="120dp"

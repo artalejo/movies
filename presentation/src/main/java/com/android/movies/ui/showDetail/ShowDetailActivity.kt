@@ -3,6 +3,7 @@ package com.android.movies.ui.showDetail
 import android.content.Context
 import android.content.Intent
 import android.support.design.widget.AppBarLayout
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.MotionEvent
@@ -69,10 +70,13 @@ class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView, Sim
     private fun setUpRecyclerView() {
         similarShowsAdaper.setClickListener(this)
         similarShowsAdaper.setInfiniteListener(this)
+        val horizontalManager = LinearLayoutManager.HORIZONTAL
         similar_shows_recycler.setupWithEndless(similarShowsAdaper,
-                LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false),
+                LinearLayoutManager(this, horizontalManager, false),
                 loadMore = loadMoreData())
+
         similar_shows_recycler.isNestedScrollingEnabled = false
+        ViewCompat.setNestedScrollingEnabled(similar_shows_recycler, false)
         invalidateParentScrollWhenRecyclerTouch()
     }
 
