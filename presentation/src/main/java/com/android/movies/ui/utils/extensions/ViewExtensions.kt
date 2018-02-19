@@ -280,8 +280,10 @@ fun View.showAnimation(context:Context, animation: Int, setVisible: Boolean = fa
 fun EditText.showErrorIcon(errorResourceId: Int = R.drawable.ic_error_red_24dp) {
     val dr = ContextCompat.getDrawable(context, errorResourceId)
     //add an error icon to yur drawable files
-    dr.setBounds(0, 0, dr.intrinsicWidth, dr.intrinsicHeight)
-    setCompoundDrawables(null, null, dr, null)
+    dr?.let {
+        dr.setBounds(0, 0, dr.intrinsicWidth, dr.intrinsicHeight)
+        setCompoundDrawables(null, null, dr, null)
+    }
 }
 
 internal class URLSpanNoUnderline(url: String) : URLSpan(url) {

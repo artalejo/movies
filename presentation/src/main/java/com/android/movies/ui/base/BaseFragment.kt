@@ -61,21 +61,31 @@ abstract class BaseFragment : Fragment(), ErrorBaseView, LoadingBaseView, AnkoLo
         super.onAttach(context)
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.let { StateSaver.saveInstanceState(this, outState!!) }
     }
 
-    override fun showException(exceptionMessage: String) =
-            ExceptionUtils.showException(activity.findViewById(android.R.id.content),
+    override fun showException(exceptionMessage: String) {
+        activity?.let {
+            ExceptionUtils.showException(it.findViewById(android.R.id.content),
                                          exceptionMessage)
+        }
 
-    override fun showUnauthorizedException() =
-            ExceptionUtils.showUnauthorizedException(context = context,
-                    functionToExecute = {} )
+    }
 
-    override fun showServerError() =
-            ExceptionUtils.showServerError(fragmentManager, "Error",
-                    onBackPressed = { activity.onBackPressed() },
-                    onRefreshPressed = { activity.recreate() } )
+    override fun showUnauthorizedException() {
+        context?.let {
+            ExceptionUtils.showUnauthorizedException(context = it, functionToExecute = {} )
+        }
+    }
+
+    override fun showServerError() {
+        activity?.let {
+            ExceptionUtils.showServerError(fragmentManager!!, "Error",
+                    onBackPressed = { it.onBackPressed() },
+                    onRefreshPressed = { it.recreate() } )
+        }
+    }
+
 }

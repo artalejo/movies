@@ -31,7 +31,7 @@ class ShowDetailFragment : BaseFragment(), ShowDetailFragView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showInfo = arguments?.getParcelable(SHOW) as ShowViewEntity
-        close.setOnClickListener{ presenter.onBackBtnPressed() }
+        close_detail.setOnClickListener{ presenter.onBackBtnPressed() }
         setUpShowInfo()
     }
 

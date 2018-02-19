@@ -3,7 +3,6 @@ package com.android.movies.ui.showDetail
 import android.content.Context
 import android.content.Intent
 import android.support.design.widget.AppBarLayout
-import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.MotionEvent
@@ -76,7 +75,6 @@ class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView, Sim
                 loadMore = loadMoreData())
 
         similar_shows_recycler.isNestedScrollingEnabled = false
-        ViewCompat.setNestedScrollingEnabled(similar_shows_recycler, false)
         invalidateParentScrollWhenRecyclerTouch()
     }
 
@@ -85,7 +83,9 @@ class ShowDetailActivity : BaseActivity(), InfiniteListener, ShowDetailView, Sim
             if (v != null && event != null) {
                 val action = event.action
                 when (action) {
-                    MotionEvent.ACTION_DOWN, MotionEvent.ACTION_UP ->
+                    // For any action in the recycler, I intercept it and disallow the nested to
+                    // get the touch event so that the horizontal scroll is as smooth as possible.
+                    MotionEvent.ACTION_DOWN, MotionEvent.ACTION_UP, MotionEvent.ACTION_MOVE->
                         v.parent.requestDisallowInterceptTouchEvent(true)
                 }
                 v.onTouchEvent(event)

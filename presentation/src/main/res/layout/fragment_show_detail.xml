@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.android.movies.ui.utils.views.CustomImageViewPadding
-            android:id="@+id/close"
+            android:id="@+id/close_detail"
             android:layout_width="@dimen/back_toolbar_size"
             android:layout_height="@dimen/back_toolbar_size"
             android:layout_marginStart="16dp"
