@@ -3,8 +3,8 @@
     <item android:drawable="@color/colorPrimary" />
 
     <item
-        android:width="200dp"
-        android:height="180dp"
+        android:width="60dp"
+        android:height="60dp"
         android:drawable="@drawable/ic_movies_icon"
         android:gravity="center"
         android:top="120dp" android:bottom="120dp"
