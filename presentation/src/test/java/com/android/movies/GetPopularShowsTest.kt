@@ -11,23 +11,32 @@ import com.android.movies.ui.popularShows.PopularShowsPresenter
 import com.android.movies.ui.popularShows.PopularShowsView
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
-import org.junit.BeforeClass
+import org.junit.Before
 import org.junit.Test
 import org.mockito.MockitoAnnotations
+import kotlin.coroutines.experimental.AbstractCoroutineContextElement
 
 class GetPopularShowsTest {
 
     private val LOAD_MORE_PAGE = 1
-    private var mockedShowsRepo = mock<ShowsRepository>()
-    private var mockedShowsView = mock<PopularShowsView>()
-    private var mockedExceptionHandler = mock<AndroidExceptionHandler>()
+    private lateinit var mockedShowsRepo : ShowsRepository
+    private lateinit var mockedShowsView : PopularShowsView
+    private lateinit var mockedExceptionHandler : AndroidExceptionHandler
+    private val testContext : AbstractCoroutineContextElement = TestContextProvider.TestContext
+    private lateinit var showsPresenter : PopularShowsPresenter
 
-    companion object {
-        @BeforeClass fun setUp() = MockitoAnnotations.initMocks(this)
+    @Before
+    fun setUp(){
+        MockitoAnnotations.initMocks(this)
+        mockedShowsRepo = mock()
+        mockedShowsView = mock()
+        mockedExceptionHandler = mock()
+        showsPresenter = setUpPresenter()
     }
 
     @After
     fun tearDown(){
+        showsPresenter.onPause()
         reset(mockedShowsRepo, mockedShowsView, mockedExceptionHandler)
     }
 
@@ -35,12 +44,8 @@ class GetPopularShowsTest {
     @Test
     fun onResumeShouldDisplayPopularShowsWhenNoException() {
         // given
-        val interactor = ShowsInteractor(mockedShowsRepo)
         val shows = generateShows()
         val result : Result<List<ShowInfo>, *> = Result.of { shows }
-        interactor.androidContext = TestContextProvider.TestContext
-        val showsPresenter = PopularShowsPresenter(mockedShowsView, interactor)
-        showsPresenter.exceptionHandler = mockedExceptionHandler
         whenever(mockedShowsRepo.getShows(any())).thenReturn(result)
         // when
         showsPresenter.onResume()
@@ -53,11 +58,7 @@ class GetPopularShowsTest {
     fun onResumeShouldNotifyErrorWhenResultIsFailure() {
         // given
         val exceptionThrown = Exception()
-        val interactor = ShowsInteractor(mockedShowsRepo)
-        interactor.androidContext = TestContextProvider.TestContext
         val result : Result<List<ShowInfo>, *> = Result.Failure(exceptionThrown)
-        val showsPresenter = PopularShowsPresenter(mockedShowsView, interactor)
-        showsPresenter.exceptionHandler = mockedExceptionHandler
         whenever(mockedShowsRepo.getShows(any())).thenReturn(result)
         // when
         showsPresenter.onResume()
@@ -68,12 +69,8 @@ class GetPopularShowsTest {
     @Test
     fun onLoadMoreShowsShouldDisplayMoreShowsWhenNoException() {
         // given
-        val showsInteractor = ShowsInteractor(mockedShowsRepo)
         val shows = generateShows()
         val result : Result<List<ShowInfo>, *> = Result.of { shows }
-        showsInteractor.androidContext = TestContextProvider.TestContext
-        val showsPresenter = PopularShowsPresenter(mockedShowsView, showsInteractor)
-        showsPresenter.exceptionHandler = mockedExceptionHandler
         whenever(mockedShowsRepo.getShows(any())).thenReturn(result)
         // when
         showsPresenter.onLoadMoreShows(LOAD_MORE_PAGE)
@@ -88,5 +85,13 @@ class GetPopularShowsTest {
         val shows = arrayListOf<ShowInfo>()
         shows.add(showInfo)
         return shows
+    }
+
+    private fun setUpPresenter(): PopularShowsPresenter{
+        var interactor = ShowsInteractor(mockedShowsRepo)
+        interactor.androidContext = testContext
+        var showsPresenter = PopularShowsPresenter(mockedShowsView, interactor)
+        showsPresenter.exceptionHandler = mockedExceptionHandler
+        return showsPresenter
     }
 }

@@ -11,35 +11,43 @@ import com.android.movies.ui.swipableShows.SwipableShowsPresenter
 import com.android.movies.ui.swipableShows.SwipableShowsView
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
-import org.junit.BeforeClass
+import org.junit.Before
 import org.junit.Test
 import org.mockito.MockitoAnnotations
+import kotlin.coroutines.experimental.AbstractCoroutineContextElement
 
 class SwipableShowsTest {
 
     private val LOAD_MORE_PAGE = 1
-    private var mockedShowsRepo = mock<ShowsRepository>()
-    private var mockedShowsView = mock<SwipableShowsView>()
-    private var mockedExceptionHandler = mock<AndroidExceptionHandler>()
+    private val SHOW_ID = 1L
+    private lateinit var mockedShowsRepo: ShowsRepository
+    private lateinit var mockedShowsView: SwipableShowsView
+    private lateinit var mockedExceptionHandler: AndroidExceptionHandler
+    private var testContext : AbstractCoroutineContextElement = TestContextProvider.TestContext
+    private lateinit var showsPresenter : SwipableShowsPresenter
 
-    companion object {
-        @BeforeClass fun setUp() = MockitoAnnotations.initMocks(this)
+    @Before
+    fun setUp(){
+        MockitoAnnotations.initMocks(this)
+        mockedShowsRepo = mock()
+        mockedShowsView = mock()
+        mockedExceptionHandler = mock()
+        showsPresenter = setUpPresenter()
     }
 
     @After
     fun tearDown(){
+        showsPresenter.onPause()
         reset(mockedShowsRepo, mockedShowsView, mockedExceptionHandler)
     }
 
     @Test
     fun onResumeShouldDisplayPopularShowsWhenNoException() {
         // given
-        val interactor = setupInteractor()
         val shows = generateShows()
         val result : Result<List<ShowInfo>, *> = Result.of { shows }
-        val showsPresenter = SwipableShowsPresenter(mockedShowsView, interactor)
-        showsPresenter.exceptionHandler = mockedExceptionHandler
         whenever(mockedShowsRepo.getSimilarShows(any())).thenReturn(result)
+        whenever(mockedShowsView.getShowId()).thenReturn(SHOW_ID)
         // when
         showsPresenter.loadMoreSimilarShows(LOAD_MORE_PAGE)
         // then
@@ -52,21 +60,13 @@ class SwipableShowsTest {
     fun onResumeShouldNotifyErrorWhenResultIsFailure() {
         // given
         val exceptionThrown = Exception()
-        val interactor = setupInteractor()
         val result : Result<List<ShowInfo>, *> = Result.Failure(exceptionThrown)
-        val showsPresenter = SwipableShowsPresenter(mockedShowsView, interactor)
-        showsPresenter.exceptionHandler = mockedExceptionHandler
         whenever(mockedShowsRepo.getSimilarShows(any())).thenReturn(result)
+        whenever(mockedShowsView.getShowId()).thenReturn(SHOW_ID)
         // when
         showsPresenter.loadMoreSimilarShows(LOAD_MORE_PAGE)
         // then
         verify(mockedExceptionHandler).notifyException(mockedShowsView, exceptionThrown)
-    }
-
-    private fun setupInteractor(): SimilarShowsInteractor {
-        val interactor = SimilarShowsInteractor(mockedShowsRepo)
-        interactor.androidContext = TestContextProvider.TestContext
-        return interactor
     }
 
     private fun generateShows(): ArrayList<ShowInfo> {
@@ -74,5 +74,13 @@ class SwipableShowsTest {
         val shows = arrayListOf<ShowInfo>()
         shows.add(showInfo)
         return shows
+    }
+
+    private fun setUpPresenter(): SwipableShowsPresenter{
+        var interactor = SimilarShowsInteractor(mockedShowsRepo)
+        interactor.androidContext = testContext
+        var showsPresenter = SwipableShowsPresenter(mockedShowsView, interactor)
+        showsPresenter.exceptionHandler = mockedExceptionHandler
+        return showsPresenter
     }
 }

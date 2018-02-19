@@ -11,36 +11,43 @@ import com.android.movies.ui.showDetail.ShowDetailPresenter
 import com.android.movies.ui.showDetail.ShowDetailView
 import com.nhaarman.mockito_kotlin.*
 import org.junit.After
-import org.junit.BeforeClass
+import org.junit.Before
 import org.junit.Test
 import org.mockito.MockitoAnnotations
+import kotlin.coroutines.experimental.AbstractCoroutineContextElement
 
 class ShowDetailTest {
 
-    private var mockedShowsRepo = mock<ShowsRepository>()
-    private var mockedShowDetailView = mock<ShowDetailView>()
-    private var mockedExceptionHandler = mock<AndroidExceptionHandler>()
+    private lateinit var mockedShowsRepo : ShowsRepository
+    private lateinit var mockedShowDetailView : ShowDetailView
+    private lateinit var mockedExceptionHandler : AndroidExceptionHandler
+    private var testContext : AbstractCoroutineContextElement = TestContextProvider.TestContext
+    private lateinit var similarShowsPresenter : ShowDetailPresenter
 
-    companion object {
-        @BeforeClass fun setUp() = MockitoAnnotations.initMocks(this)
+
+    @Before
+    fun setUp(){
+        MockitoAnnotations.initMocks(this)
+        mockedShowsRepo = mock()
+        mockedShowDetailView = mock()
+        mockedExceptionHandler = mock()
+        similarShowsPresenter = setUpPresenter()
     }
 
     @After
     fun tearDown(){
+        similarShowsPresenter.onPause()
         reset(mockedShowsRepo, mockedShowDetailView, mockedExceptionHandler)
     }
 
     @Test
     fun onResumeShouldDisplaySimilarShowsWhenNoExceptionRaised() {
         // given
-        val interactor = setupInteractor()
         val similarShows = generateSimilarShows()
         val result : Result<List<ShowInfo>, *> = Result.of { similarShows }
-        val showsPresenter = ShowDetailPresenter(mockedShowDetailView, interactor)
-        showsPresenter.exceptionHandler = mockedExceptionHandler
         whenever(mockedShowsRepo.getSimilarShows(any())).thenReturn(result)
         // when
-        showsPresenter.onResume()
+        similarShowsPresenter.onResume()
         // then
         verify(mockedShowDetailView).getShowId()
         verify(mockedShowDetailView).showSimilarShows(any())
@@ -51,13 +58,10 @@ class ShowDetailTest {
     fun onResumeShouldNotifyErrorWhenResultIsFailure() {
         // given
         val exceptionThrown = Exception()
-        val interactor = setupInteractor()
         val result : Result<List<ShowInfo>, *> = Result.Failure(exceptionThrown)
-        val showsPresenter = ShowDetailPresenter(mockedShowDetailView, interactor)
-        showsPresenter.exceptionHandler = mockedExceptionHandler
         whenever(mockedShowsRepo.getSimilarShows(any())).thenReturn(result)
         // when
-        showsPresenter.onResume()
+        similarShowsPresenter.onResume()
         // then
         verify(mockedExceptionHandler).notifyException(mockedShowDetailView, exceptionThrown)
     }
@@ -92,9 +96,11 @@ class ShowDetailTest {
         return shows
     }
 
-    private fun setupInteractor(): SimilarShowsInteractor {
-        val interactor = SimilarShowsInteractor(mockedShowsRepo)
-        interactor.androidContext = TestContextProvider.TestContext
-        return interactor
+    private fun setUpPresenter(): ShowDetailPresenter {
+        var interactor = SimilarShowsInteractor(mockedShowsRepo)
+        interactor.androidContext = testContext
+        var showsPresenter = ShowDetailPresenter(mockedShowDetailView, interactor)
+        showsPresenter.exceptionHandler = mockedExceptionHandler
+        return showsPresenter
     }
 }

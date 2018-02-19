@@ -3,18 +3,25 @@ package com.android.movies
 import com.android.movies.ui.swipableShows.showDetail.ShowDetailFragView
 import com.android.movies.ui.swipableShows.showDetail.SwipableShowsFragmentPresenter
 import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.reset
 import com.nhaarman.mockito_kotlin.verify
-import org.junit.BeforeClass
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.mockito.MockitoAnnotations
 
 class SwipableShowsDetailTest {
 
-    private var mockedShowDetailFragView = mock<ShowDetailFragView>()
+    private lateinit var mockedShowDetailFragView : ShowDetailFragView
 
-    companion object {
-        @BeforeClass fun setUp() = MockitoAnnotations.initMocks(this)
+    @Before
+    fun setUp(){
+        MockitoAnnotations.initMocks(this)
+        mockedShowDetailFragView = mock()
     }
+
+    @After
+    fun tearDown(){ reset(mockedShowDetailFragView) }
 
     @Test
     fun onBackClickedCallsOnBackPressed() {
