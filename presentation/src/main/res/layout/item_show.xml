@@ -68,7 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/vertical_guideline"
             app:layout_constraintTop_toBottomOf="@+id/show_image"
-            tools:text="8.5" />
+            tools:text="8.5"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/show_date_label"
@@ -76,16 +76,15 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/item_show_margin_top_bot"
             android:layout_marginTop="@dimen/item_show_margin_top_bot"
-            android:layout_marginEnd="@dimen/show_item_right_margin"
-            android:layout_marginStart="@dimen/item_show_margin_side"
             android:fontFamily="@font/gotham_bold"
             android:textColor="@color/white"
+            android:gravity="center"
             android:textSize="@dimen/show_date_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/vertical_guideline"
             app:layout_constraintTop_toBottomOf="@+id/show_average"
-            tools:text="2017-10-13" />
+            tools:text="2017-10-13"/>
 
         <android.support.constraint.Guideline
             android:id="@+id/vertical_guideline"
@@ -95,9 +94,9 @@
             app:layout_constraintGuide_percent="0.7" />
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="16dp"
-            android:layout_height="20dp"
+            android:id="@+id/star_icon"
+            android:layout_width="@dimen/star_icon"
+            android:layout_height="@dimen/star_icon"
             android:layout_marginStart="4dp"
             app:layout_constraintBottom_toBottomOf="@+id/show_average"
             app:layout_constraintStart_toEndOf="@+id/show_average"
