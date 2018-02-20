@@ -13,9 +13,7 @@ import javax.inject.Inject
 class ShowsDataRepository @Inject constructor(showsApiDataSource: ShowsApiDataSource)
     : ShowsRepository, Repository<Unit, ShowDataEntity>() {
 
-    init {
-        readableDataSources.add(showsApiDataSource)
-    }
+    init { readableDataSources.add(showsApiDataSource) }
 
     override fun getShows(params: HashMap<String, String>): Result<List<ShowInfo>, *> {
         val result = queryAll(ShowsApiQuery::class.java, params)

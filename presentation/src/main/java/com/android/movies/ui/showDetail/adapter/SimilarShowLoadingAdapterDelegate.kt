@@ -1,10 +1,14 @@
-package com.android.movies.ui.utils.adapter
+package com.android.movies.ui.showDetail.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.movies.R
+import com.android.movies.ui.utils.adapter.AdapterDelegate
+import com.android.movies.ui.utils.adapter.ItemViewHolder
+import com.android.movies.ui.utils.adapter.LoadingViewType
+import com.android.movies.ui.utils.adapter.ViewType
 
 class SimilarShowLoadingAdapterDelegate : AdapterDelegate<List<ViewType>>() {
 

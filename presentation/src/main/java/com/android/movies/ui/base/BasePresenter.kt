@@ -2,7 +2,6 @@ package com.android.movies.ui.base
 
 import com.android.movies.interactor.Interactor
 import com.android.movies.interactor.preferences.PreferencesInteractor
-import com.android.movies.interactor.preferences.PreferencesInteractor.Companion
 import javax.inject.Inject
 
 /**
@@ -20,18 +19,6 @@ import javax.inject.Inject
 abstract class BasePresenter {
     @Inject protected lateinit var preferencesInteractor: PreferencesInteractor
     @Inject lateinit var exceptionHandler: AndroidExceptionHandler
-
-    fun clearUserLocalData(onClearSuccess: (() -> Unit),
-                           onClearError: ((String) -> Unit)) {
-        preferencesInteractor.execute(
-                PreferencesInteractor.PreferencesBundle(Companion.EDIT_TYPE.DROP)) { _ ->
-            onClearSuccess.invoke() }
-    }
-
-    fun loadAccountData(onLoadSuccess: ((Any) -> Unit),
-                        onLoadError: ((String) -> Unit)){
-
-    }
 
     abstract fun onResume()
     abstract fun onPause()

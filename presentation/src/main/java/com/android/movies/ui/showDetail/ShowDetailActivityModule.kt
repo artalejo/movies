@@ -4,7 +4,7 @@ package com.android.movies.ui.showDetail;
 import com.android.movies.dependencyinjection.scope.PerActivity
 import com.android.movies.ui.showDetail.adapter.SimilarShowsAdapterDelegate
 import com.android.movies.ui.utils.adapter.AdapterDelegate
-import com.android.movies.ui.utils.adapter.SimilarShowLoadingAdapterDelegate
+import com.android.movies.ui.showDetail.adapter.SimilarShowLoadingAdapterDelegate
 import com.android.movies.ui.utils.adapter.ViewType
 import dagger.Module
 import dagger.Provides

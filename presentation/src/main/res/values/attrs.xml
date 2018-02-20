@@ -12,12 +12,4 @@
         <attr name="image_src" format="reference"/>
     </declare-styleable>
 
-    <declare-styleable name="CustomTextInputLayout">
-        <attr name="text" format="string" />
-        <attr name="emptyError" format="string"/>
-        <attr name="validateIsEmptyWhileTyping" format="boolean"/>
-        <attr name="inputType" format="string"/>
-        <attr name="textColor" format="color"/>
-        <attr name="textSize" format="dimension"/>
-    </declare-styleable>
 </resources>

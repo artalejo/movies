@@ -7,7 +7,6 @@
     <string name="unauthorized_exception_msg">An invalid authorization was detected. You\'ll be
         redirected to login</string>
     <string name="error_text_is_empty">Not filled</string>
-    <string name="option">Option</string>
     <string name="save">Save</string>
     <string name="empty_title">No items yet</string>
     <string name="albums_empty_title">Ops!</string>

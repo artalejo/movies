@@ -36,11 +36,6 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
-    <style name="EditText">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColorHint">@color/hint_text</item>
-    </style>
-
     <style name="FullScreenDialogFragmentTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowBackground">@color/windowBackgroundColor</item>
         <item name="android:paddingRight">0dp</item>
