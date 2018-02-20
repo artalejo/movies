@@ -33,7 +33,7 @@ import org.junit.runner.RunWith
 class PopularShowsActivityTest {
 
     private val FIRST_ITEM_POS = 0
-    private val HOMELAND_ITEM_POS = 1
+    private val THIRD_ITEM_POS = 1
     private val LIMIT_POSITION = 15
     private val ENDLESS_NEW_POSITION = 30
     private val HOMELAND_TITLE = "Homeland"
@@ -54,9 +54,10 @@ class PopularShowsActivityTest {
         onData(hasToString(containsString(HOMELAND_TITLE)))
         onData(hasToString(containsString(SIMPSONS_TITLE)))
 
-        onView(withId(R.id.shows_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(HOMELAND_ITEM_POS, click()))
+        onView(withId(R.id.shows_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(THIRD_ITEM_POS, click()))
 
-        onView(withId(R.id.show_title)).check(matches(withText(HOMELAND_TITLE)))
+        onView(hasToString(containsString(activity.getString(R.string.show_average))))
+        onView(hasToString(containsString(activity.getString(R.string.first_appearance))))
         onView(withId(R.id.toolbar_back)).perform(click())
         onData(hasToString(containsString(HOMELAND_TITLE)))
     }
@@ -83,14 +84,16 @@ class PopularShowsActivityTest {
         onData(hasToString(containsString(HOMELAND_TITLE)))
         onData(hasToString(containsString(SIMPSONS_TITLE)))
 
-        onView(withId(R.id.shows_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(HOMELAND_ITEM_POS, click()))
+        onView(withId(R.id.shows_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(THIRD_ITEM_POS, click()))
 
-        onView(withId(R.id.show_title)).check(matches(withText(HOMELAND_TITLE)))
         val currentActivity = getCurrentActivity()
         ConditionWatcher.waitForCondition(currentActivity as AppCompatActivity, similarShowsInstruction)
         onView(withId(R.id.similar_shows_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(FIRST_ITEM_POS, click()))
         onView(hasToString(containsString(currentActivity.getString(R.string.show_average))))
         onView(hasToString(containsString(currentActivity.getString(R.string.first_appearance))))
+        onView(withId(R.id.shows_view_pager)).perform(ViewActions.swipeLeft())
+        onView(withId(R.id.shows_view_pager)).perform(ViewActions.swipeLeft())
+        onView(withId(R.id.shows_view_pager)).perform(ViewActions.swipeRight())
     }
 
     private fun getCurrentActivity(): Activity {
